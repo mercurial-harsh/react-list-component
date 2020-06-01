@@ -1,42 +1,69 @@
-import React from 'react';
+import React,{useState} from 'react';
 //import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container'
+import Paper from '@material-ui/core/Paper'
 
-function generate(element) {
-    return [0, 1, 2].map((value) =>
-      React.cloneElement(element, {
-        key: value,
-      }),
-    );
-  }
 
-function listcomp(title) {
-    return (
-        <div >
-       
-       <Grid item xs={12} md={6}>
-          <Typography variant="h6" >
-            {title}
+
+
+
+
+const Listcomp=(props)=> {
+  const copy=[...props.lists]
+  const [ list, setList ] = useState(copy)
+
+
+
+  
+  console.log(list)
+
+
+  return (
+    
+
+
+
+      <React.Fragment >
+        <Grid direction ="column" sm="4">
+          <Container maxwidth="xs">
+          <Typography>
+            {props.title}
           </Typography>
-          <div >
-            <List >
-              {generate(
-                <ListItem>
-                  <ListItemText
-                    primary="Single-line item"
-                    
-                  />
-                </ListItem>,
-              )}
-            </List>
-          </div>
-        </Grid>
-      </div>
-    );
-  }
+          <Paper elevation='6'>
+          
+          <List >
+          { list.map((p)=>
+            
+            <ListItem>
+              <ListItemText
+                primary={p}
+                
+              />
+              </ListItem>)
+            }         
+         
+            
+            {/* <ListItem>
+              <ListItemText
+                primary="lalaji"
+              />
 
-export default listcomp;
+            </ListItem> */}
+          </List>
+          </Paper>
+          </Container>
+        </Grid>
+        
+      </React.Fragment>
+
+
+    
+  );
+}
+
+export default Listcomp;
